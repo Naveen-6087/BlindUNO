@@ -91,6 +91,7 @@ contract ConfidentialUnoGame {
 
     event GameCreated(uint256 indexed gameId, address creator, uint16 initialTopCardId);
     event PlayerJoined(uint256 indexed gameId, address player);
+    event GameDeleted(uint256 indexed gameId);
     event GameStarted(uint256 indexed gameId);
     event MoveCommitted(
         uint256 indexed gameId, 
@@ -229,6 +230,26 @@ contract ConfidentialUnoGame {
         inco.allow(euint256.unwrap(game.topCard), _joinee);
 
         emit PlayerJoined(gameId, _joinee);
+    }
+
+    /**
+     * @notice Delete a game before it starts (only the host/creator can delete)
+     * @dev The host is the first player in the players array (the creator)
+     */
+    function deleteGame(uint256 gameId) external validateGame(gameId, GameStatus.NotStarted) {
+        Game storage game = games[gameId];
+        
+        // Only the host (first player / creator) can delete the game
+        require(game.players.length > 0, "No players in game");
+        require(game.players[0] == msg.sender, "Only host can delete");
+        
+        // Remove from notStartedGames list
+        _removeFromNotStartedGames(gameId);
+        
+        // Delete the game (playerHands mappings will become inaccessible)
+        delete games[gameId];
+        
+        emit GameDeleted(gameId);
     }
 
     /**

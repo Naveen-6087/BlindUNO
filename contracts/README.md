@@ -46,15 +46,7 @@ pnpm hardhat test --network anvil
 
 | Network | Address | Explorer |
 |---------|---------|----------|
-| Base Sepolia | `0x5a81f4F50A6ACCA3965E4098E32f75E532556cDc` | [BaseScan](https://sepolia.basescan.org/address/0x5a81f4F50A6ACCA3965E4098E32f75E532556cDc) |
-
-### Previous Versions
-| Version | Address | Notes |
-|---------|---------|-------|
-| v2 | `0xCCC606643887db32cc6a398236346389Db36A088` | Fixed initial dealing ACL |
-| v1 | `0xDb1b390A5197A92dD44E8De6A20fDb04d53ab605` | Initial deployment |
-
-## How Inco Works
+| Base Sepolia | `0xCE1Bbb81E30CeC15a2Cf9E9DA33F3C2D5d5869Fa` | [BaseScan](https://sepolia.basescan.org/address/0xCE1Bbb81E30CeC15a2Cf9E9DA33F3C2D5d5869Fa) |
 
 ### What is Inco?
 Inco provides **on-chain confidentiality** through a network of covalidators. Unlike FHE (Fully Homomorphic Encryption), Inco doesn't require expensive computation on encrypted data. Instead:

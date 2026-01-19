@@ -123,3 +123,59 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* UNO Game Custom Styles */
+@layer components {
+  /* Wood table background - main play area */
+  .bg-wood-table {
+    background-color: #2d5a27;
+    background-image: 
+      radial-gradient(ellipse at center, rgba(45, 90, 39, 0.9) 0%, rgba(25, 50, 22, 1) 100%),
+      repeating-linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.03) 0px,
+        rgba(0, 0, 0, 0.03) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Wood panel background - sidebars and headers */
+  .bg-wood-panel {
+    background-color: #8b5a2b;
+    background-image: 
+      linear-gradient(to bottom, rgba(139, 90, 43, 1) 0%, rgba(119, 75, 35, 1) 100%),
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.02) 0px,
+        rgba(0, 0, 0, 0.02) 1px,
+        transparent 1px,
+        transparent 8px
+      );
+  }
+
+  /* Custom scrollbar for wood panels */
+  .scrollbar-wood {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 90, 43, 0.6) rgba(139, 90, 43, 0.2);
+  }
+
+  .scrollbar-wood::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-wood::-webkit-scrollbar-track {
+    background: rgba(139, 90, 43, 0.2);
+    border-radius: 4px;
+  }
+
+  .scrollbar-wood::-webkit-scrollbar-thumb {
+    background: rgba(139, 90, 43, 0.6);
+    border-radius: 4px;
+  }
+
+  .scrollbar-wood::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 90, 43, 0.8);
+  }
+}

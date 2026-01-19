@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎴 Confidential UNO
 
-## Getting Started
+A fully on-chain UNO card game with **private hands** powered by [Inco Network](https://inco.org) confidential computing on Base Sepolia.
 
-First, run the development server:
+## ✨ Features
+
+- **Private Card Hands**: Your cards are encrypted on-chain using Inco's confidential computing - only you can see them
+- **Provably Fair**: Deck shuffling uses cryptographic randomness via `shuffledRange`
+- **Multiplayer**: 2-10 players per game
+- **Full UNO Rules**: Skip, Reverse, Draw 2, Wild, Wild Draw 4, UNO calls & penalties
+- **Session Keys**: Sign once to create a session key - decrypt cards without signing each time
+- **Wallet Connect**: Connect with Privy (supports email, social, and wallet connections)
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Next.js 16** with App Router
+- **React 19** with Tailwind CSS
+- **Privy** for wallet connection
+- **wagmi + viem** for blockchain interactions
+- **shadcn/ui** components
+
+### Smart Contracts
+- **Solidity** with Hardhat
+- **Inco Lightning SDK** for confidential computing
+- **EList** for encrypted on-chain lists
+- Deployed on **Base Sepolia**
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- pnpm (recommended) or npm
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install frontend dependencies
+npm install
+
+# Install contract dependencies
+cd contracts && pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file in the root:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
+NEXT_PUBLIC_GAME_CONTRACT_ADDRESS=0xCE1Bbb81E30CeC15a2Cf9E9DA33F3C2D5d5869Fa
+```
 
-## Learn More
+### Development
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Run the frontend
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000) to play!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```
+├── src/
+│   ├── app/              # Next.js App Router pages
+│   │   ├── page.tsx      # Landing page
+│   │   └── games/        # Game lobby & gameplay
+│   ├── components/       # React components
+│   │   ├── ui/           # shadcn/ui components
+│   │   └── uno/          # UNO game components
+│   └── utils/            # Utilities & hooks
+│       └── uno/          # Game logic & Inco client
+├── contracts/            # Smart contracts (Hardhat)
+│   ├── contracts/        # Solidity source
+│   ├── ignition/         # Deployment modules
+│   └── test/             # Contract tests
+└── public/               # Static assets
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎮 How It Works
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Inco Confidential Computing
+
+Inco provides **on-chain confidentiality** without FHE (Fully Homomorphic Encryption) overhead. Instead, it uses a network of covalidators to:
+
+1. **Encrypt data** - Card values are stored encrypted on-chain
+2. **Process privately** - Game logic runs on encrypted values
+3. **Selective reveal** - Only card owners can decrypt their hands via signed requests
+
+### Game Flow
+
+1. **Create Game** → Shuffles 108-card deck cryptographically
+2. **Join Game** → Players join, receive 7 encrypted cards each
+3. **Start Game** → Host starts when 2+ players are ready
+4. **Play** → On your turn, play matching cards or draw
+5. **UNO!** → Call UNO when you have 1 card left
+6. **Win** → First player to empty their hand wins!
+
+## 📜 Smart Contract
+
+**ConfidentialUnoGame** is deployed at:
+
+| Network | Address |
+|---------|---------|
+| Base Sepolia | [`0xCE1Bbb81E30CeC15a2Cf9E9DA33F3C2D5d5869Fa`](https://sepolia.basescan.org/address/0xCE1Bbb81E30CeC15a2Cf9E9DA33F3C2D5d5869Fa) |
+
+See [contracts/README.md](contracts/README.md) for contract documentation.
+
+## 📄 License
+
+MIT

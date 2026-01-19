@@ -717,7 +717,7 @@ export default function GamesPage() {
       {/* Background image with high opacity */}
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/waitingroom1.jpg')" }}
+        style={{ backgroundImage: "url('/homepage/waitingroom1.png')" }}
       />
       {/* Green overlay on top of background */}
       <div className="fixed inset-0 bg-gradient-to-b from-[#1a3d1a]/90 via-[#1a4d1a]/85 to-[#1a3d1a]/90" />

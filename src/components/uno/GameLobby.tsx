@@ -30,7 +30,7 @@ export function GameLobby({
       {/* Background image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/waitingroom1.jpg')" }}
+        style={{ backgroundImage: "url('/hompage/waitingroom1.png')" }}
       />
       {/* Green overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#1a3d1a]/85 via-[#1a4d1a]/80 to-[#1a3d1a]/85" />
